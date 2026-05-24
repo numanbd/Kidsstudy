@@ -36,7 +36,7 @@ jobs:
           unzip -o "$ZIP_FILE" -d extracted
 
           echo "Extracted files:"
-          find extracted -maxdepth 4 -type f | head -n 100
+          find extracted -maxdepth 5 -type f | head -n 150
 
           PROJECT_DIR=$(find extracted -name "settings.gradle" -type f -printf '%h\n' | head -n 1)
 
@@ -62,12 +62,6 @@ jobs:
           else
             gradle assembleDebug
           fi
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: KidsStudyPromptHelper-APK
-          path: ${{ env.PROJECT_DIR }}/app/build/outputs/apk/debug/*.apk          ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
